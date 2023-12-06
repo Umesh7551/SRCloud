@@ -1,0 +1,223 @@
+{% extends 'base.html' %}
+{% block title %}
+Welcome to SR Cloud - Login
+{% endblock %}
+
+{% block content %}
+<div class="block-1" style="text-align: right;">
+    <select>
+        <option value="">Workspace</option>
+        <option value="">Option 1</option>
+        <option value="">Option 2</option>
+        <option value="">Option 3</option>
+    </select>
+    <select>
+        <option value="">Region</option>
+        <option value="">Option 1</option>
+        <option value="">Option 2</option>
+        <option value="">Option 3</option>
+    </select>
+    <select>
+        <option value="">App</option>
+        <option value="">Option 1</option>
+        <option value="">Option 2</option>
+        <option value="">Option 3</option>
+    </select>
+    <a href="{{url_for('logout')}}">Logout</a>
+
+</div>
+<div class="container">
+    <div class="row">
+<div class="col-md-12">
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="home-tab" data-bs-toggle="tab" onclick="showTab('home')"
+                    data-bs-target="#home-tab-pane" type="button" role="tab" aria-controls="home-tab-pane"
+                    aria-selected="true"><i class="fa fa-home" aria-hidden="true"></i> Home
+            </button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="product-tab" data-bs-toggle="tab" onclick="showTab('products')"
+                    data-bs-target="#product-tab-pane" type="button" role="tab" aria-controls="product-tab-pane"
+                    aria-selected="false"><i class="fa fa-tag" aria-hidden="true"></i> Products
+            </button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="spaces-tab" onclick="showTab('spaces')" data-bs-toggle="tab"
+                    data-bs-target="#spaces-tab-pane"
+                    type="button" role="tab" aria-controls="spaces-tab-pane" aria-selected="false"><i
+                    class="fa fa-sitemap" aria-hidden="true"></i> Spaces
+            </button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="devices-tab" onclick="showTab('devices')" data-bs-toggle="tab"
+                    data-bs-target="#devices-tab-pane"
+                    type="button" role="tab" aria-controls="devices-tab-pane" aria-selected="false"><i
+                    class="fa fa-television" aria-hidden="true"></i> Devices
+            </button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="reports-tab" onclick="showTab('reports')" data-bs-toggle="tab"
+                    data-bs-target="#reports-tab-pane"
+                    type="button" role="tab" aria-controls="reports-tab-pane" aria-selected="false"><i
+                    class="fa fa-bar-chart" aria-hidden="true"></i> Data Reports
+            </button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="dashboard-tab" onclick="showTab('dashboards')" data-bs-toggle="tab"
+                    data-bs-target="#dashboard-tab-pane"
+                    type="button" role="tab" aria-controls="dashboard-tab-pane" aria-selected="false"><i
+                    class="fa fa-pie-chart" aria-hidden="true"></i> Dashboards
+            </button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="administration-tab" onclick="showTab('administration')" data-bs-toggle="tab"
+                    data-bs-target="#administration-tab-pane"
+                    type="button" role="tab" aria-controls="administration-tab-pane" aria-selected="false"><i
+                    class="fa fa-cog" aria-hidden="true"></i> Administration
+            </button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="account-tab" onclick="showTab('account')" data-bs-toggle="tab"
+                    data-bs-target="#account-tab-pane"
+                    type="button" role="tab" aria-controls="account-tab-pane" aria-selected="false"><i
+                    class="fa fa-user" aria-hidden="true"></i> Account
+            </button>
+        </li>
+
+    </ul>
+    <div id="myTabContent">
+        <div class="tab-content active" id="home" role="tabpanel">
+            <br><br>
+            <h1> Welcome to SR Cloud RFID</h1>
+            <br>
+            <p>Your Product Information on the SR Cloud</p>
+        </div>
+        <div class="tab-content" id="products" role="tabpanel" style="display: none;">
+            <h2>Products</h2>
+        </div>
+        <div class="tab-content" id="spaces" role="tabpanel" style="display: none;">
+            <h2>Spaces</h2>
+        </div>
+        <div class="tab-content" id="devices" role="tabpanel" style="display: none;">
+            <h2>Devices</h2>
+        </div>
+        <div class="tab-content" id="reports" role="tabpanel" style="display: none;">
+            <h2>Data Reports</h2>
+            <div class="">
+
+                    <input type="text" id="fromDate" placeholder="From Date">
+                    <input type="text" id="toDate" placeholder="To Date">
+                    <button type="submit" class="btn btn-primary" id="generateReport">Generate Report</button>
+
+            </div>
+            <br>
+            <div id="response-content">
+
+            </div>
+        </div>
+        <div class="tab-content" id="dashboards" role="tabpanel" style="display: none;">
+            <h2>Dashboards</h2>
+        </div>
+        <div class="tab-content" id="administration" role="tabpanel" style="display: none;">
+            <h2>Administration</h2>
+        </div>
+        <div class="tab-content" id="account" role="tabpanel" style="display: none;">
+
+            <ul class="nav nav-tabs" id="myTab1" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="password-tab" data-bs-toggle="tab"
+                            onclick="showTab1('password')"
+                            data-bs-target="#password-tab-pane" type="button" role="tab"
+                            aria-controls="password-tab-pane"
+                            aria-selected="true">Password
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="certificate-tab" data-bs-toggle="tab" onclick="showTab1('certificate')"
+                            data-bs-target="#certificate-tab-pane" type="button" role="tab"
+                            aria-controls="certificate-tab-pane"
+                            aria-selected="false">Certificate
+                    </button>
+                </li>
+
+
+            </ul>
+            <div id="myTabContent1">
+                <div class="tab-content1 active" id="password" role="tabpanel">
+                    <div class="container change_password_block">
+                        <h1> Change Password</h1>
+                        <div class="row">
+                            <form action="/change_password" method="post">
+                                <div class=" col-md-4 col-sm-6">
+
+                                    <label class="form-label">Current Password</label>
+                                    <div class="form-group pass_show">
+                                        <input type="password" class="form-control" name="current_password"
+                                               minlength="8" placeholder="Current Password">
+                                    </div>
+                                    <br>
+                                    <label class="form-label">New Password</label>
+                                    <div class="form-group pass_show">
+                                        <input type="password" class="form-control" name="new_password" minlength="8"
+                                               placeholder="New Password">
+                                    </div>
+                                    <br>
+                                    <label class="form-label">Confirm Password</label>
+                                    <div class="form-group pass_show">
+                                        <input type="password" class="form-control" name="confirm_password"
+                                               minlength="8" placeholder="Confirm Password">
+                                    </div>
+                                    <br>
+
+                                </div>
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </form>
+                            <div id="msg">
+                                {% with messages = get_flashed_messages(category_filter=["password_unmatch"]) %}
+                                {% if messages %}
+
+                                {% for message in messages %}
+                                {{ message }}
+                                {% endfor %}
+
+                                {% endif %}
+                                {% endwith %}
+                            </div>
+                            <div id="msg1">
+                                {% with messages = get_flashed_messages(category_filter=["password_success"]) %}
+                                {% if messages %}
+
+                                {% for message in messages %}
+                                {{ message }}
+                                {% endfor %}
+
+                                {% endif %}
+                                {% endwith %}
+                            </div>
+                            <div id="msg2">
+                                {% with messages = get_flashed_messages(category_filter=["current_password"]) %}
+                                {% if messages %}
+
+                                {% for message in messages %}
+                                {{ message }}
+                                {% endfor %}
+
+                                {% endif %}
+                                {% endwith %}
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="tab-content1" id="certificate" role="tabpanel" style="display: none;">
+                    <h2>Cetificates</h2>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+</div>
+</div>
+{% endblock %}
